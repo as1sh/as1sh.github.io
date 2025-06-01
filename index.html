@@ -6,7 +6,9 @@
     <div class="countdown" style="text-align: center;">
         <p id="countdownDisplay" style="font-size: 3em; font-weight: bold;">Loading...</p>
       <img src="padhai.png" alt="Padhai Likhai Karo, IAS YAS Bano" style="max-width: 90%; height: auto; margin-top: 30px;">
-
+        
+      <h2 style="margin-top: 30px;">Phir Milenge!</h2>
+      <p id="countdownDisplay2" style="font-size: 3em; font-weight: bold;">Loading...</p>
     </div>
     <script>
         // Set the target date and time (June 4, 2025 at 9:00 AM)
@@ -36,6 +38,35 @@
                 document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
             }
         }, 1000);
+
+       // Set the target date and time (July 19, 2025 at 14:00 PM)
+        const targetDate2 = new Date("July 19, 2025 14:00:00").getTime();
+
+        // Update the countdown every second
+        const countdown2 = setInterval(function() {
+            // Get the current date and time
+            const now = new Date().getTime();
+
+            // Find the remaining time
+            const timeLeft = targetDate2 - now;
+
+            // Calculate days, hours, minutes, and seconds
+
+            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdownDisplay2").innerHTML = 
+                `${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown finishes
+            if (timeLeft < 0) {
+                clearInterval(countdown2);
+                document.getElementById("countdownDisplay2").innerHTML = "EXPIRED";
+            }
+        }, 1000);
     </script>
+  
 </body>
 </html>
