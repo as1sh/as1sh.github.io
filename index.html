@@ -13,35 +13,43 @@
       <p id="countdownDisplay2" style="font-size: 3em; font-weight: bold;">Loading...</p>
        <img src="jab.jpg" alt="Apun Idhar hi hai" style="max-width: 80%; height: auto; margin-top: 30px;">
  </div>
-    <script>
-        // Set the target date and time (June 4, 2025 at 9:00 AM)
-        const targetDate = new Date("June 4, 2025 10:00:00").getTime();
+    
+<script>
+    // List of target dates in order
+    const targetDates = [
+        new Date("June 12, 2025 10:00:00").getTime(),
+        new Date("June 16, 2025 10:00:00").getTime(),
+        new Date("June 20, 2025 10:00:00").getTime(),
+        new Date("June 24, 2025 10:00:00").getTime() // Final countdown
+    ];
 
-        // Update the countdown every second
-        const countdown = setInterval(function() {
-            // Get the current date and time
-            const now = new Date().getTime();
+    let currentIndex = 0;
 
-            // Find the remaining time
-            const timeLeft = targetDate - now;
+    const countdown = setInterval(function () {
+        const now = new Date().getTime();
 
-            // Calculate days, hours, minutes, and seconds
+        // If all countdowns are over
+        if (currentIndex >= targetDates.length) {
+            clearInterval(countdown);
+            document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
+            return;
+        }
 
+        const timeLeft = targetDates[currentIndex] - now;
+
+        if (timeLeft <= 0) {
+            // Move to the next target date
+            currentIndex++;
+        } else {
             const hours = Math.floor(timeLeft / (1000 * 60 * 60));
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            // Display the countdown
-            document.getElementById("countdownDisplay").innerHTML = 
+            document.getElementById("countdownDisplay").innerHTML =
                 `${hours}h ${minutes}m ${seconds}s`;
-
-            // If the countdown finishes
-            if (timeLeft < 0) {
-                clearInterval(countdown);
-                document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-
+        }
+    }, 1000);
+  
        // Set the target date and time (July 19, 2025 at 14:00 PM)
         const targetDate2 = new Date("July 19, 2025 14:00:00").getTime();
 
