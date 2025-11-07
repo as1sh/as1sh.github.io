@@ -3,75 +3,59 @@
 <head><title>Site works?</title></head>
 <body>
   <h1 style="text-align:center;">Maut ke Saath Appointment Countdown!</h1>
-    <div class="countdown" style="text-align: center;">
-        <p id="countdownDisplay" style="font-size: 3em; font-weight: bold;">Loading...</p>
-      <img src="padhai.png" alt="Padhai Likhai Karo, IAS YAS Bano" style="max-width: 90%; height: auto; margin-top: 30px;">
-         </div>
-  
-      <h1 style="text-align:center; margin-top: 150px;">Phir Milenge!</h1>
-<div class="countdown" style="text-align: center;">
-      <p id="countdownDisplay2" style="font-size: 3em; font-weight: bold;">Loading...</p>
-       <img src="jab.jpg" alt="Apun Idhar hi hai" style="max-width: 80%; height: auto; margin-top: 30px;">
- </div>
-    
-<script>
-    // List of target dates in order
+  <div class="countdown" style="text-align: center;">
+    <p id="countdownDisplay" style="font-size: 3em; font-weight: bold;">Loading...</p>
+    <img src="padhai.png" alt="Padhai Likhai Karo, IAS YAS Bano" style="max-width: 90%; height: auto; margin-top: 30px;">
+  </div>
+
+  <h1 style="text-align:center; margin-top: 150px;">Phir Milenge!</h1>
+  <div class="countdown" style="text-align: center;">
+    <p id="countdownDisplay2" style="font-size: 3em; font-weight: bold;">Loading...</p>
+    <img src="jab.jpg" alt="Apun Idhar hi hai" style="max-width: 80%; height: auto; margin-top: 30px;">
+  </div>
+
+  <script>
+    // First countdown
     const targetDate = new Date("November 18, 2025 09:00:00").getTime();
-   
 
     const countdown = setInterval(function () {
-        const now = new Date().getTime();
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
 
-        // If all countdowns are over
-        if (currentIndex >= targetDate.length) {
-            clearInterval(countdown);
-            document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
-            return;
-        }
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
+        return;
+      }
 
-        const timeLeft = targetDate[currentIndex] - now;
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        if (timeLeft <= 0) {
-            // Move to the next target date
-            currentIndex++;
-        } else {
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            document.getElementById("countdownDisplay").innerHTML =
-                `${hours}h ${minutes}m ${seconds}s`;
-        }
+      document.getElementById("countdownDisplay").innerHTML =
+        `${hours}h ${minutes}m ${seconds}s`;
     }, 1000);
-  
-       // Set the target date and time (July 19, 2025 at 14:00 PM)
-        const targetDate2 = new Date("November 18, 2025 13:00:00").getTime();
 
-        // Update the countdown every second
-        const countdown2 = setInterval(function() {
-            // Get the current date and time
-            const now = new Date().getTime();
+    // Second countdown
+    const targetDate2 = new Date("November 18, 2025 13:00:00").getTime();
 
-            // Find the remaining time
-            const timeLeft = targetDate2 - now;
+    const countdown2 = setInterval(function () {
+      const now = new Date().getTime();
+      const timeLeft = targetDate2 - now;
 
-            // Calculate days, hours, minutes, and seconds
+      if (timeLeft <= 0) {
+        clearInterval(countdown2);
+        document.getElementById("countdownDisplay2").innerHTML = "EXPIRED";
+        return;
+      }
 
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            // Display the countdown
-            document.getElementById("countdownDisplay2").innerHTML = 
-                `${hours}h ${minutes}m ${seconds}s`;
-
-            // If the countdown finishes
-            if (timeLeft < 0) {
-                clearInterval(countdown2);
-                document.getElementById("countdownDisplay2").innerHTML = "EXPIRED";
-            }
-        }, 1000);
-    </script>
-  
+      document.getElementById("countdownDisplay2").innerHTML =
+        `${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
 </body>
 </html>
