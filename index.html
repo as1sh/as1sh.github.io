@@ -16,20 +16,20 @@
     
 <script>
     // List of target dates in order
-    const targetDates = new Date("November 18, 2025 09:00:00").getTime();
+    const targetDate = new Date("November 18, 2025 09:00:00").getTime();
     let currentIndex = 0;
 
     const countdown = setInterval(function () {
         const now = new Date().getTime();
 
         // If all countdowns are over
-        if (currentIndex >= targetDates.length) {
+        if (currentIndex >= targetDate.length) {
             clearInterval(countdown);
             document.getElementById("countdownDisplay").innerHTML = "EXPIRED";
             return;
         }
 
-        const timeLeft = targetDates[currentIndex] - now;
+        const timeLeft = targetDate[currentIndex] - now;
 
         if (timeLeft <= 0) {
             // Move to the next target date
